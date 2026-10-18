@@ -175,16 +175,44 @@ While `flutter run` is active:
 Note that the key commands belong to the terminal running `flutter run`, so run
 it yourself rather than detaching it.
 
-### Checks
+### Tests and analysis
 
 ```sh
-flutter analyze     # static analysis — expected: No issues found!
-flutter test        # 5 tests covering greeting, layout, CTA and navigation
+flutter analyze     # static analysis
+flutter test        # unit and widget tests
 ```
 
-The test suite includes a narrow-phone (360px) layout test. Flutter reports
-`RenderFlex` overflow as a test failure, so that test guards the smallest
-supported viewport.
+**Current results — 5 passing, 0 failing, no analyzer issues:**
+
+| Test | What it covers |
+|---|---|
+| `greeting tracks the time of day` | Morning / afternoon / evening boundaries in the greeting helper |
+| `home dashboard renders its grounding sections` | Hero, situation carousel, weekly rhythm, technique tiles and somatic card are all present |
+| `reset CTA acknowledges the tap then returns` | Tapping "Help Me Reset" swaps the label to "Breathing with you…" and restores it |
+| `bottom navigation switches destinations` | Favorites replaces the dashboard, and Home returns to it |
+| `lays out without overflow on a narrow phone` | The 360px layout produces no `RenderFlex` overflow |
+
+```
+00:00 +0: greeting tracks the time of day
+00:00 +1: home dashboard renders its grounding sections
+00:01 +2: reset CTA acknowledges the tap then returns
+00:01 +3: bottom navigation switches destinations
+00:01 +4: lays out without overflow on a narrow phone
+00:02 +5: All tests passed!
+
+flutter analyze → No issues found! (ran in 3.8s)
+```
+
+Captured on commit `a06e840` with Flutter 3.47.7 / Dart 3.13.5 on macOS 26.3.1.
+
+There is no CI configured, so this is a point-in-time snapshot rather than a
+live status — it will go stale as soon as the code changes. Re-run the two
+commands above after any change.
+
+The narrow-phone test is the one that earns its keep: Flutter reports
+`RenderFlex` overflow as a test failure, so it guards the smallest viewport the
+design targets. It has already caught a real overflow in the weekly-rhythm
+header row.
 
 ---
 
