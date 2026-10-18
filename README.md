@@ -12,6 +12,12 @@ The visual language is defined by the **Serene Sanctuary** design system: deep
 botanical teal (`#285C59`) on a warm mineral canvas (`#FAF9F4`), Inter
 throughout, pill-shaped controls and roomy 24px card corners.
 
+![The Aven home dashboard running in Chrome](docs/screenshots/home-dashboard.png)
+
+<sub>The home dashboard as it currently appears. Captured at desktop width — the
+design targets a 360–428px phone viewport, so reach for the DevTools device
+toolbar to see it at its intended size.</sub>
+
 ---
 
 ## Current status
@@ -220,8 +226,11 @@ lib/
     └── section_heading.dart
 
 assets/
-├── fonts/                     Inter 400 / 500 / 600
+├── fonts/                     Inter 400 / 500 / 600 (+ OFL license)
 └── images/                    Bundled thumbnail for the somatic card
+
+docs/
+└── screenshots/               Images referenced by this README
 
 test/
 └── widget_test.dart
